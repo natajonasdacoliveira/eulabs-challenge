@@ -13,6 +13,8 @@ func productsRoutes(e *echo.Echo) {
 	p := e.Group("/products")
 
 	p.GET("", products.GetProducts)
-
 	p.GET("/:id", products.GetProduct)
+	p.POST("", products.CreateProduct)
+	p.PUT("/:id", products.UpdateProduct)
+	p.DELETE("/:id", products.DeleteProduct)
 }
