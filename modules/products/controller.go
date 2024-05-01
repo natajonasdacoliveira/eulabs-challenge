@@ -1,7 +1,6 @@
 package products
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -9,8 +8,8 @@ import (
 )
 
 func GetProducts(ctx echo.Context) error {
-	fmt.Println(ctx.QueryParams())
 	productName := ctx.QueryParam("name")
+
 	products, err := getProducts(productName)
 	if err != nil {
 		logger.NewLogger().Error(err.Error())

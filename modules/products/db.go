@@ -1,6 +1,8 @@
 package products
 
 import (
+	"errors"
+
 	"github.com/natajonasdacoliveira/eulabs-challenge/db"
 	"github.com/natajonasdacoliveira/eulabs-challenge/logger"
 )
@@ -10,15 +12,17 @@ func getProducts(productName string) ([]Product, error) {
 	defer db.Close()
 
 	products := []Product{}
-
-	err := db.Select(&products, `
+	query := `
 		SELECT * FROM product
 		WHERE deleted_at IS NULL
 		AND name LIKE ?
-	`, "%"+productName+"%")
+	`
+
+	err := db.Select(&products, query, "%"+productName+"%")
+
 	if err != nil {
 		logger.NewLogger().Error(err.Error())
-		return nil, err
+		return nil, errors.New("erro ao buscar produtos")
 	}
 	return products, nil
 }
@@ -35,6 +39,9 @@ func getProduct(id string) (Product, error) {
 	`, id)
 	if err != nil {
 		logger.NewLogger().Error(err.Error())
+		if err.Error() == "sql: no rows in result set" {
+			return Product{}, errors.New("produto não encontrado")
+		}
 		return Product{}, err
 	}
 	return product, nil
