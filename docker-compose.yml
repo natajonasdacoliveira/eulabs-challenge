@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  app:
+    container_name: eulabs
+    build: .
+    ports:
+      - 8000:8080
+    restart: on-failure
+    volumes:
+      - api:/usr/src/app/
+    depends_on:
+      - mysql_eulabs
+
+  mysql_eulabs:
+    image: mysql:5.7
+    container_name: mysql_eulabs
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_ROOT_HOST=${MYSQL_HOST}
+      # - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DB}
+    volumes:
+      - database_mysql:/var/lib/mysql
+
+volumes:
+  api:
+  database_mysql:
