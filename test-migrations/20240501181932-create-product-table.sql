@@ -9,27 +9,5 @@ CREATE TABLE product (
   deleted_at TIMESTAMP NULL DEFAULT NULL
 );
 
-INSERT INTO
-  product (id, name, price, description)
-VALUES
-  (
-    null,
-    'Product 1',
-    19.99,
-    'Sample description for Product 1'
-  ),
-  (
-    null,
-    'Product 2',
-    29.99,
-    'Sample description for Product 2'
-  ),
-  (
-    null,
-    'Product 3',
-    39.99,
-    'Sample description for Product 3'
-  );
-
 -- +migrate Down
 DROP TABLE product;
