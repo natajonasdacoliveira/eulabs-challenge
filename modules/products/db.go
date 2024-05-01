@@ -12,7 +12,7 @@ func getProducts() ([]Product, error) {
 	products := []Product{}
 
 	err := db.Select(&products, `
-		SELECT * FROM products
+		SELECT * FROM product
 		WHERE deleted_at IS NULL
 	`)
 	if err != nil {
