@@ -1,0 +1,9 @@
+test-postgres:
+  dialect: postgres
+  datasource: host=${POSTGRES_HOST} port=${POSTGRES_PORT} user=${POSTGRES_USER} dbname=${POSTGRES_DB} password=${POSTGRES_PASSWORD} sslmode=${POSTGRES_SSL}
+  dir: test-migrations/
+
+postgres:
+  dialect: postgres
+  datasource: host=${POSTGRES_HOST} port=${POSTGRES_PORT} user=${POSTGRES_USER} dbname=${POSTGRES_DB} password=${POSTGRES_PASSWORD} sslmode=${POSTGRES_SSL}
+  dir: migrations/
