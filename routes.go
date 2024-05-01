@@ -12,11 +12,7 @@ func Routes(e *echo.Echo) {
 func productsRoutes(e *echo.Echo) {
 	p := e.Group("/products")
 
-	p.GET("/", products.GetProducts)
+	p.GET("", products.GetProducts)
 
-	p.GET("/:id", func(c echo.Context) error {
-		return c.JSON(200, map[string]interface{}{
-			"message": "Hello, Worldwith id",
-		})
-	})
+	p.GET("/:id", products.GetProduct)
 }
