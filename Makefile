@@ -5,7 +5,7 @@ MIGRATE=sql-migrate
 
 limit=1
 name=default
-branch=test-postgres
+branch=test-mysql
 
 migrate-status:
 	$(MIGRATE) status -env=${branch}
