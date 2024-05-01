@@ -18,7 +18,7 @@ func InitDbMysql() *sqlx.DB {
 		return nil
 	}
 
-	connectionString := fmt.Sprintf("%s:%s@(%s:%s)/%s", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_HOST"), os.Getenv("MYSQL_PORT"), os.Getenv("MYSQL_DB"))
+	connectionString := fmt.Sprintf("%s:%s@(%s:%s)/%s?parseTime=true", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_HOST"), os.Getenv("MYSQL_PORT"), os.Getenv("MYSQL_DB"))
 	db, err := sqlx.Connect("mysql", connectionString)
 
 	if err != nil {
